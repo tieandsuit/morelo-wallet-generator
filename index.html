@@ -5249,7 +5249,7 @@
             border-radius: 0;
             outline: none;
             height: 3rem;
-            width: 100%;
+            width: 30%;
             font-size: 1rem;
             margin: 0 0 15px 0;
             padding: 0;
@@ -5538,7 +5538,7 @@
         /* CUSTOM CSS CHECKBOXES */
         form p {
             margin-bottom: 10px;
-            text-align: left;
+            text-align: center;
         }
 
         form p:last-child {
@@ -10680,30 +10680,32 @@ html { font-family: sans-serif }
 
     <div class="row">
         <div class="col s12">
-            <p>
-                This page generates a new <strong>ArQmA</strong> Wallet Address. It is self contained and
-                does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
-                that is not connected to the network, and may even never be. This way, you can create
-                an Arqma wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
-            </p>
+            <div class="row center-align">
+                <p>This page generates a new <strong>ArQmA</strong> Wallet Address.</p>
+                <p>It is self contained and does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
+                that is not connected to the network, and may even never be.</p>
+                <p>This way, you can create an Arqma wallet without risking the keys.</p>
+            </div>
         </div>
     </div>
-    <div class="row valign-wrapper">
-        <div class="col s4 right-align ">
+    <div class="row center-align">
+        <div class="col s12">
+            <form>
                 <input class="btn orange" type="button" onclick="js:genwallet(null);"
                        value="Generate wallet" id="gen_with_custom_entropy_button" action=""/>
                 <p>Custom entropy for deterministic wallet (leave empty to use the browser's PRNG)</p>
                 <input type="text" value="" id="user_entropy_widget" oninput="js:checkEntropy();" />
                 <div style="color: red; display: none" id="user_entropy_warning_widget">WARNING: entropy is way too low for the wallet to be secure: aim for 256 bits (about a hundred dice throws)</div>
+            </form>
         </div>
-        <div class="col s1 offset-s1"><h4>or</h4></div>
+        <!-- <div class="col s1 offset-s1"><h4>or</h4></div> 
         <div class="col s5 offset-s1">
             <form>
                 <input class="btn deep-orange" type="button" onclick="js:genwallet_prefix();" value="Generate wallet with prefix" action="" id="gen_prefix_widget"/>
                 <p>(very slow for more than a few characters)</p>
                 <input type="text" value="ar" id="prefix_widget" oninput="js:check_prefix_validity()"; />
             </form>
-        </div>
+        </div> -->
     </div>
     <div class="row center-align">
         <div class="col s12">
@@ -10734,7 +10736,7 @@ html { font-family: sans-serif }
                     </p>
                 </div>
                 <div class="card-action center-align">
-                    <pre class="center-align" id="address_widget">generating...</pre>
+                    <pre class="left-align" id="address_widget">generating...</pre>
                     <span class="qrcode" id="address_qr_widget" onclick="js:toggle_qr();"></span>
                 </div>
             </div>
@@ -10750,7 +10752,7 @@ html { font-family: sans-serif }
                         private keys. <b>Keep it secure!</b>
                     </p>
                 </div>
-                <div class="card-action center-align">
+                <div class="card-action left-align">
                     <h5 class="grey-text text-darken-4" id="mnemonic_widget">Generating... </h5>
                 </div>
             </div>
