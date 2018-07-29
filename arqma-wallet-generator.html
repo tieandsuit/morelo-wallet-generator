@@ -6698,6 +6698,7 @@
         }
         
 </style>
+
 </head>
 <body>
 <script>
@@ -10718,6 +10719,7 @@ html { font-family: sans-serif }
                 <p>It is self contained and does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
                 that is not connected to the network, and may even never be.</p>
                 <p>This way, you can create an Arqma wallet without risking the keys.</p>
+                <p>This file is GPG signed. You can verify it if you want using the <a href="#gpg-instructions">GPG instructions</a> at the bottom of the page.</p>
             </div>
         </div>
     </div>
@@ -10728,6 +10730,8 @@ html { font-family: sans-serif }
                        value="Generate wallet" id="gen_with_custom_entropy_button" action=""/>
                 <p>Custom entropy for deterministic wallet (leave empty to use the browser's PRNG)</p>
                 <input type="text" value="" id="user_entropy_widget" oninput="js:checkEntropy();" />
+                <input class="btn deep-orange" type="hidden" onclick="js:genwallet_prefix();" value="Generate wallet with prefix" action="" id="gen_prefix_widget" />
+                <input type="hidden" value="ar" id="prefix_widget" oninput="js:check_prefix_validity()" ; />
                 <div style="color: red; display: none" id="user_entropy_warning_widget">WARNING: entropy is way too low for the wallet to be secure: aim for 256 bits (about a hundred dice throws)</div>
             </form>
         </div>
@@ -10813,13 +10817,13 @@ html { font-family: sans-serif }
             </div>
         </div>
     </div>
-        
+
     <div class="row">
         <div class="col s12">
-            <button class="collapsible">GPG Tutorial</button>
+            <button class="collapsible" id="gpg-instructions">GPG instructions</button>
             <div class="gpgtut">
 
-<h5 id="gpg-instructions">How to verify GPG signatures</h5>
+<h5>How to verify GPG signatures</h5>
 <p>
 All released versions of this page will be GPG signed by SmyjeNz0, to avoid trojaned versions
 being passed around. It is in your interest to check the signature.
@@ -10849,7 +10853,7 @@ gpg --verify arqma-wallet-generator.html.asc
 You should see a message similar to:
 </p>
 <code>
-gpg: Good signature from "moneromooo-monero &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cdcfcec5d2cfcdcfcfcf8dcdcfcec5d2cfe0d5d3c5d2d38ececfd2c5d0ccd98ec7c9d4c8d5c28ec3cfcd">[email&#160;protected]</a>&gt;"
+gpg: Good signature from "SmajeNz0 (ArQmA) &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cdcfcec5d2cfcdcfcfcf8dcdcfcec5d2cfe0d5d3c5d2d38ececfd2c5d0ccd98ec7c9d4c8d5c28ec3cfcd">[email&#160;protected]</a>&gt;"
 </code>
 <p>
 Check the signature is from the key you imported previously! If not, you may be checking
@@ -10881,7 +10885,7 @@ git show --show-signature
 You should see a message similar to:
 </p>
 <code>
-gpg: Good signature from "moneromooo-monero &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="385557565d4a5755575757155557565d4a57784d4b5d4a4b1656574a5d485441165f514c504d5a165b5755">[email&#160;protected]</a>&gt;"
+gpg: Good signature from "SmajeNz0 (ArQmA) &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="385557565d4a5755575757155557565d4a57784d4b5d4a4b1656574a5d485441165f514c504d5a165b5755">[email&#160;protected]</a>&gt;"
 </code>
 <p>
 Check the signature is from the key you imported previously! If not, you may be checking
@@ -11166,6 +11170,7 @@ function setCoin(index)
 
 genwallet();
 </script>
+
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
