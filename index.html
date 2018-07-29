@@ -6665,6 +6665,39 @@
 
 
     </style>
+    <style>
+     /* Style the button that is used to open and close the collapsible content */
+        .collapsible {
+            background-color: #393939;
+            color: #6ba0cc;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .collapsible:hover {
+            background-color: #393939;
+        }
+
+/* Style the collapsible content. Note: hidden by default */
+        .gpgtut {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #393939;
+        } 
+        
+        .collapsible:focus {
+            outline: none;
+            background-color: #393939;
+        }
+        
+</style>
 </head>
 <body>
 <script>
@@ -10698,14 +10731,6 @@ html { font-family: sans-serif }
                 <div style="color: red; display: none" id="user_entropy_warning_widget">WARNING: entropy is way too low for the wallet to be secure: aim for 256 bits (about a hundred dice throws)</div>
             </form>
         </div>
-        <!-- <div class="col s1 offset-s1"><h4>or</h4></div> 
-        <div class="col s5 offset-s1">
-            <form>
-                <input class="btn deep-orange" type="button" onclick="js:genwallet_prefix();" value="Generate wallet with prefix" action="" id="gen_prefix_widget"/>
-                <p>(very slow for more than a few characters)</p>
-                <input type="text" value="ar" id="prefix_widget" oninput="js:check_prefix_validity()"; />
-            </form>
-        </div> -->
     </div>
     <div class="row center-align">
         <div class="col s12">
@@ -10788,15 +10813,95 @@ html { font-family: sans-serif }
             </div>
         </div>
     </div>
+        
+    <div class="row">
+        <div class="col s12">
+            <button class="collapsible">GPG Tutorial</button>
+            <div class="gpgtut">
 
-
+<h5 id="gpg-instructions">How to verify GPG signatures</h5>
+<p>
+All released versions of this page will be GPG signed by SmyjeNz0, to avoid trojaned versions
+being passed around. It is in your interest to check the signature.
+</p>
+<p>
+This page is maintained as a
+<a href="https://github.com/arqma/arqma-wallet-generator/">git repository</a>.
+Released versions of the page are signed separately.
+In order to check either, you first need to import
+<a href="https://raw.githubusercontent.com/arqma/arqma/master/utils/gpg_keys/SmajeNz0.asc">SmajeNz0's GPG key</a>
+from the ArQmA source tree:
+</p>
+<code>
+gpg --import SmajeNz0.asc
+</code>
+<h5>Checking a standalone signature</h5>
+<p>
+You need to get the signature file corresponding to the version of the page you're using.
+Original signature files are
+<a href="https://raw.githubusercontent.com/arqma/arqma-wallet-generator/master/arqma-wallet-generator.html.asc">in the git repository</a>
+as well. Save it as arqma-wallet-generator.html.asc, then:
+</p>
+<code>
+gpg --verify arqma-wallet-generator.html.asc
+</code>
+<p>
+You should see a message similar to:
+</p>
+<code>
+gpg: Good signature from "moneromooo-monero &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cdcfcec5d2cfcdcfcfcf8dcdcfcec5d2cfe0d5d3c5d2d38ececfd2c5d0ccd98ec7c9d4c8d5c28ec3cfcd">[email&#160;protected]</a>&gt;"
+</code>
+<p>
+Check the signature is from the key you imported previously! If not, you may be checking
+that file was properly signed by an attacker instead of SmajeNz0. Beware that anyone can
+place any email address in a new GPG key, so the right email being shown is no guarantee.
+</p>
+<p>
+NOTE: you will probably also see a warning like this:
+</p>
+<code>
+gpg: WARNING: This key is not certified with a trusted signature!
+</code>
+<p>
+That is expected, as you only told GPG to import the signature in the steps above, but not
+to trust it. Look for tutorials on GPG if you want to do this, but it is not necessary here.
+</p>
+<p>
+If you want to verify an old version of the file, you will have to retrieve the matching
+signature file from git.
+</p>
+<h5>Checking a git commit's signature</h5>
+<p>
+If you're using git to get the latest and greatest, it's even simpler:
+</p>
+<code>
+git show --show-signature
+</code>
+<p>
+You should see a message similar to:
+</p>
+<code>
+gpg: Good signature from "moneromooo-monero &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="385557565d4a5755575757155557565d4a57784d4b5d4a4b1656574a5d485441165f514c504d5a165b5755">[email&#160;protected]</a>&gt;"
+</code>
+<p>
+Check the signature is from the key you imported previously! If not, you may be checking
+that file was properly signed by an attacker instead of SmajeNz0. Beware that anyone can
+place any email address in a new GPG key, so the right email being shown is no guarantee.
+</p>
+            </div> 
+        </div>
+    </div>
 
 <div class="row">&nbsp;</div>
 <footer class="page-footer grey lighten-3 grey-text text-darken-4">
 
 <div class="row center-align">
     <div class="col s12">
-        <p>Made by moneromooo, based on code from <a href="https://mymonero.com/">MyMonero</a>. Copyright notices in the source.</p>
+        <p>
+            Made by <a href="https://arqma.com/">ArQmA TEAM</a>, based on code from <a href="https://mymonero.com/">MyMonero</a>. Copyright notices in the source. This page is maintained as a
+            <a href="https://github.com/arqma/arqma-wallet-generator/">git repository</a>.
+            <br>
+        </p>
     </div>
 </div>
     
@@ -11060,6 +11165,22 @@ function setCoin(index)
 }
 
 genwallet();
+</script>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var gpgtut = this.nextElementSibling;
+    if (gpgtut.style.display === "block") {
+      gpgtut.style.display = "none";
+    } else {
+      gpgtut.style.display = "block";
+    }
+  });
+} 
 </script>
 
 </body>
