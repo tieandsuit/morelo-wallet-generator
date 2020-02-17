@@ -94,7 +94,7 @@
 -->
 
 <head>
-  <title>ArQmA Wallet Address Off-Line Generator</title>
+  <title>Galaxia Wallet Address Off-Line Generator</title>
   <meta charset="UTF-8">
     <style type="text/css">
         html {
@@ -8576,12 +8576,12 @@ return{_strlen:lb,_ge_mul8:Va,_keccak:db,_ge_scalarmult:Ta,_ge_fromfe_frombytes_
 
 
 
-var arqmaConfig = {
+var galaxiaConfig = {
     coinUnitPlaces: 9,
-    coinSymbol: 'ARQ',
-    coinName: 'Arqma',
-    coinUriPrefix: 'arqma:',
-    addressPrefix: 0x2cca
+    coinSymbol: 'GXI',
+    coinName: 'Galaxia',
+    coinUriPrefix: 'galaxia:',
+    addressPrefix: 0x786e
 };
 /*var aeonConfig = {
     coinUnitPlaces: 12,
@@ -9012,7 +9012,7 @@ var cnUtilGen = function(initConfig) {
 
     return this;
 };
-var cnUtil = cnUtilGen(arqmaConfig);
+var cnUtil = cnUtilGen(galaxiaConfig);
 /*
  mnemonic.js : Converts between 4-byte aligned strings and a human-readable
  sequence of words. Uses 1626 common words taken from wikipedia article:
@@ -9110,7 +9110,7 @@ function mn_random(bits) {
     'use strict';
     if (bits % 32 !== 0) throw "Something weird went wrong: Invalid number of bits - " + bits;
     var array = new Uint32Array(bits / 32);
-    if (!window.crypto) throw "Unfortunately Arqma Generator only runs on browsers that support the JavaScript Crypto API";
+    if (!window.crypto) throw "Unfortunately Galaxia Generator only runs on browsers that support the JavaScript Crypto API";
     var i = 0;
 
     function arr_is_zero() {
@@ -10698,7 +10698,7 @@ html { font-family: sans-serif }
 <nav class="navy">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center">
-            <img style="height:60px;" src="images/arqma.png">
+            <img style="height:60px;" src="images/galaxia.png">
         </a>
 
     </div>
@@ -10715,10 +10715,10 @@ html { font-family: sans-serif }
     <div class="row">
         <div class="col s12">
             <div class="row center-align">
-                <p>This page generates a new <strong>ArQmA</strong> Wallet Address.</p>
+                <p>This page generates a new <strong>Galaxia</strong> Wallet Address.</p>
                 <p>It is self contained and does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
                 that is not connected to the network, and may even never be.</p>
-                <p>This way, you can create an Arqma wallet without risking the keys.</p>
+                <p>This way, you can create an Galaxia wallet without risking the keys.</p>
                 <p>This file is GPG signed. You can verify it if you want using the <a href="#gpg-instructions">GPG instructions</a> at the bottom of the page.</p>
             </div>
         </div>
@@ -10760,7 +10760,7 @@ html { font-family: sans-serif }
                          style="line-height: 25px; height: 25px; font-size: 60%; padding: 0px 1.5rem;"/ id="show_qr_code">
                     </span>
 
-                    <p>This is the address you give to third parties to send Arqma to you.
+                    <p>This is the address you give to third parties to send Galaxia to you.
                         <br><b>It is the only information here that's meant to be public.</b>
                     </p>
                 </div>
@@ -10844,16 +10844,16 @@ gpg --import SmajeNz0.asc
 You need to get the signature file corresponding to the version of the page you're using.
 Original signature files are
 <a href="https://raw.githubusercontent.com/arqma/arqma-wallet-generator/master/arqma-wallet-generator.html.asc">in the git repository</a>
-as well. Save it as arqma-wallet-generator.html.asc, then:
+as well. Save it as Galaxia-wallet-generator.html.asc, then:
 </p>
 <code>
-gpg --verify arqma-wallet-generator.html.asc
+gpg --verify Galaxia-wallet-generator.html.asc
 </code>
 <p>
 You should see a message similar to:
 </p>
 <code>
-gpg: Good signature from "SmajeNz0 (ArQmA) &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cdcfcec5d2cfcdcfcfcf8dcdcfcec5d2cfe0d5d3c5d2d38ececfd2c5d0ccd98ec7c9d4c8d5c28ec3cfcd">[email&#160;protected]</a>&gt;"
+gpg: Good signature from "SmajeNz0 (Galaxia) &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0cdcfcec5d2cfcdcfcfcf8dcdcfcec5d2cfe0d5d3c5d2d38ececfd2c5d0ccd98ec7c9d4c8d5c28ec3cfcd">[email&#160;protected]</a>&gt;"
 </code>
 <p>
 Check the signature is from the key you imported previously! If not, you may be checking
@@ -10885,7 +10885,7 @@ git show --show-signature
 You should see a message similar to:
 </p>
 <code>
-gpg: Good signature from "SmajeNz0 (ArQmA) &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="385557565d4a5755575757155557565d4a57784d4b5d4a4b1656574a5d485441165f514c504d5a165b5755">[email&#160;protected]</a>&gt;"
+gpg: Good signature from "SmajeNz0 (Galaxia) &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="385557565d4a5755575757155557565d4a57784d4b5d4a4b1656574a5d485441165f514c504d5a165b5755">[email&#160;protected]</a>&gt;"
 </code>
 <p>
 Check the signature is from the key you imported previously! If not, you may be checking
@@ -10902,8 +10902,7 @@ place any email address in a new GPG key, so the right email being shown is no g
 <div class="row center-align">
     <div class="col s12">
         <p>
-            Made by <a href="https://arqma.com/">ArQmA TEAM</a>, based on code from <a href="https://mymonero.com/">MyMonero</a>. Copyright notices in the source. This page is maintained as a
-            <a href="https://github.com/arqma/arqma-wallet-generator/">git repository</a>.
+            Forked from <a href="https://arqma.com/">ArQmA</a>, based on code from <a href="https://mymonero.com/">MyMonero</a>. Copyright notices in the source.</a>.
             <br>
         </p>
     </div>
@@ -10960,7 +10959,7 @@ function genwallet(lang)
   // only monero has the URI scheme
   if (prefix_widget.value == "ar") {
     qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
-    qr.makeCode("arqma:"+keys.public_addr);
+    qr.makeCode("Galaxia:"+keys.public_addr);
   }
   else {
     qr = null;
@@ -11004,7 +11003,7 @@ function genwallet_prefix_worker()
   mnemonic_widget.innerHTML = mnemonic;
 
   qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
-  qr.makeCode("arqma:"+keys.public_addr);
+  qr.makeCode("Galaxia:"+keys.public_addr);
 }
 
 var zerohex="0000000000000000000000000000000000000000000000000000000000000000";
@@ -11149,7 +11148,7 @@ function setCoin(index)
   var language
   prefix_widget = document.getElementById("prefix_widget");
   if (index == 0) {
-    cnUtil = cnUtilGen(arqmaConfig);
+    cnUtil = cnUtilGen(galaxiaConfig);
     prefix_widget.value = "ar";
     enable = true
     language = "english"
